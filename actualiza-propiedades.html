@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CATALOGO PROPIEDADES</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="./img/logo.ico" rel="icon">
+
+  <!--link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"-->
+
+  <!-- Google Fonts -->
+  <!--link href="https://fonts.gstatic.com" rel="preconnect"-->
+  <!--link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet"-->
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+
+  <!-- DataTables CSS files-->
+  <link rel="stylesheet" type="text/css" href="../assets/datatables/datatables.min.css" />
+
+  <!-- Template Main CSS File -->
+  <link href="./css/style.css" rel="stylesheet">
+
+  <!-- Sweet Alert Files-->
+  <!--link type="text/css" href="../assets/css/sweetalert.css" rel="stylesheet" /-->
+  <script src="../assets/js/sweetalert2.all.min.js"></script>
+
+
+  <!-- jQuery js-->
+  <script src="../assets/js/jquery-3.6.3.min.js"></script>
+
+  <!-- App Lotto JS -->
+  <script src="./js/mccMain.js"></script>
+
+
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <script>
+
+      checkInicioSesion();
+
+      addHeader();
+
+    </script>
+
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <script>
+        addMenu();
+
+      </script>
+
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main" style="min-height:600px">
+
+    <div class="row ">
+      <div class="pagetitle col-lg-4 mb-lg-3">
+        <h1>Actualiza Propiedades</h1>
+        <!--span>Módulo Mantenimiento</span-->
+
+      </div><!-- End Page Title -->
+
+      <!-- Barra botones -->
+      <div class="col-lg-8 d-flex mb-lg-3 justify-content-lg-center justify-content-end">
+
+
+
+        <button id="btnActualizar" type="button" class="btn btn-primary me-2">Actualizar</button>
+        <button id="btnCancelar" type="button" class="btn btn-danger">Cancelar</button>
+
+
+      </div>
+
+    </div>
+
+
+
+    <section class="section">
+
+      <div id="spinner" class="text-center" style="display: none">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-center">
+        <!-- Div del formulario-->
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+
+              <div class="input-group mb-3 mt-3">
+                <label for="txtNumProp" class="col-lg-2 col-form-label">Número Propiedad</label>
+                <div class="col-lg-2 me-2">
+                  <input id="txtNumProp" name="txtNumProp" type="text" class="form-control text-end"
+                    oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="8" inputmode="numeric" disabled
+                    autocomplete="off">
+                </div>
+
+
+                <!--div class="col-lg-2 col-2">
+                  <button id="btnNuevo" class="btn btn-dark">Nuevo Registro</button>
+                </div-->
+
+
+              </div>
+
+
+
+              <div id="tabs">
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="publicacion-tab" data-bs-toggle="tab"
+                      data-bs-target="#publicacion" type="button" role="tab" aria-controls="publicacion"
+                      aria-selected="true">Detalles Publicacion</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="ubicacion-tab" data-bs-toggle="tab" data-bs-target="#ubicacion"
+                      type="button" role="tab" aria-controls="ubicacion" aria-selected="false">Ubicación</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="propiedad-tab" data-bs-toggle="tab" data-bs-target="#propiedad"
+                      type="button" role="tab" aria-controls="propiedad" aria-selected="false">Detalles
+                      Propiedad</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="finLegal-tab" data-bs-toggle="tab" data-bs-target="#finLegal"
+                      type="button" role="tab" aria-controls="finLegal" aria-selected="false">Financiero/Legal</button>
+                  </li>
+
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contacto-tab" data-bs-toggle="tab" data-bs-target="#contacto"
+                      type="button" role="tab" aria-controls="contacto" aria-selected="false">Contacto</button>
+                  </li>
+
+                </ul>
+
+
+                <div class="tab-content" id="myTabContent">
+
+                  <div class="tab-pane fade show active" id="publicacion" role="tabpanel"
+                    aria-labelledby="publicacion-tab">
+
+                    <form method="post" autocomplete="off">
+
+
+
+                      <div class="row mb-3 mt-3">
+                        <label for="txtTitulo" class="col-lg-2 col-form-label">Titulo</label>
+                        <div class="col-lg-9">
+                          <textarea class="form-control" name="txtTitulo" id="txtTitulo" rows="2" maxlength="300"
+                            autofocus></textarea>
+                        </div>
+                      </div>
+
+                      <div class="row">
+
+                        <div class="col-lg-6">
+                          <div class="row mb-3">
+                            <label class="col-lg-4 col-form-label">Tipo Anuncio</label>
+                            <div class="col-lg-6">
+                              <select id="cbTipoPub" class="form-select" aria-label="Default select example">
+                                <option value="0">Seleccione una opción</option>
+                                <option value="1">Alquiler</option>
+                                <option value="2">Venta</option>
+                                <option value="3">Alquiler/Venta</option>
+                              </select>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="col-lg-6">
+                          <div class="row mb-3">
+                            <label class="col-lg-3 col-form-label">Tipo Propiedad</label>
+                            <div class="col-lg-8">
+                              <select id="cbTipoProp" class="form-select" aria-label="Default select example">
+                                <option value="0">Seleccione una opción</option>
+
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="row">
+
+                        <div class="col-lg-6">
+                          <div class="row mb-3">
+                            <label for="txtFecPub" class="col-lg-4 col-6 col-form-label">Fecha Publicación</label>
+                            <div class="col-lg-4 col-6">
+                              <input id="txtFecPub" name="txtFecPub" type="date" class="form-control" disabled>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="row mb-3">
+                            <label class="col-lg-3 col-6 col-form-label">Estado</label>
+                            <div class="col-lg-6">
+                              <select id="cbEstado" class="form-select" aria-label="Default select example">
+                                <option value="0">Publicacion Inactiva</option>
+                                <option selected value="1">Publicacion Activa</option>
+                                <option value="2">Propiedad Vendida</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </form>
+                  </div>
+
+                  <div class="tab-pane fade" id="ubicacion" role="tabpanel" aria-labelledby="ubicacion-tab">
+
+                    <form id="datosUbicacion_form" autocomplete="off">
+
+                      <div class="row">
+
+                        <div class="col-lg-8">
+
+                          <div class="row mb-lg-3 mt-3">
+                            <label class="col-lg-2 col-form-label">Provincia</label>
+                            <div class="col-lg-6">
+                              <select id="cbProvincias" class="form-select" aria-label="Default select example">
+                                <option selected value="0">Seleccione una Provincia</option>
+
+                              </select>
+                            </div>
+                            <div id="spinnerProv" class="col-1" style="display: none">
+                              <div class="spinner-border text-primary" style="width: 1.5rem; height: 1.5rem;"
+                                role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row mb-lg-3">
+                            <label class="col-lg-2 col-form-label">Cantón</label>
+                            <div class="col-lg-6">
+                              <select id="cbCantones" class="form-select" aria-label="Default select example">
+                                <option selected value="0">Seleccione un Cantón</option>
+
+                              </select>
+                            </div>
+                            <div id="spinnerCant" class="col-1" style="display: none">
+                              <div class="spinner-border text-primary" style="width: 1.5rem; height: 1.5rem;"
+                                role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row mb-lg-3">
+                            <label class="col-lg-2 col-form-label">Distrito</label>
+                            <div class="col-lg-6">
+                              <select id="cbDistritos" class="form-select" aria-label="Default select example">
+                                <option selected value="0">Seleccione un Distrito</option>
+
+                              </select>
+                            </div>
+                            <div id="spinnerDist" class="col-1" style="display: none">
+                              <div class="spinner-border text-primary" style="width: 1.5rem; height: 1.5rem;"
+                                role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row mb-3">
+                            <label for="txtSennas" class="col-lg-2 col-form-label">Otras Señas</label>
+                            <div class="col-lg-9">
+                              <textarea class="form-control" name="txtSennas" id="txtSennas" rows="3"
+                                maxlength="300"></textarea>
+                            </div>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    </form>
+
+                  </div>
+
+                  <div class="tab-pane fade" id="propiedad" role="tabpanel" aria-labelledby="propiedad-tab">
+
+                    <form id="datos-propiedad_form" autocomplete="off">
+
+
+                      <div class="input-group mb-3 mt-3">
+                        <label for="txtUsoAct" class="col-lg-2 col-form-label">Uso Actual</label>
+                        <div class="col-lg-6">
+                          <input id="txtUsoAct" name="txtUsoAct" type="text" class="form-control" maxlength="40">
+                        </div>
+                      </div>
+
+                      <div class="row">
+
+                        <div class="col-lg-4">
+                          <div class="input-group mb-3">
+                            <label for="txtCanHab" class="col-lg-6 col-form-label me-2">Habit / Oficinas</label>
+                            <div class="col-lg-3">
+                              <input id="txtCanHab" name="txtCanHab" type="text" class="form-control text-end"
+                                oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="3"
+                                inputmode="numeric">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                          <div class="input-group mb-3">
+                            <label for="txtCanBanos" class="col-lg-3 col-form-label me-2">Baños</label>
+                            <div class="col-lg-3">
+                              <input id="txtCanBanos" name="txtCanBanos" type="text" class="form-control text-end"
+                                oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="3"
+                                inputmode="numeric">
+                            </div>
+                          </div>
+
+
+                        </div>
+
+                        <div class="col-lg-3">
+                          <div class="input-group mb-3">
+                            <label for="txtCanPisos" class="col-lg-3 col-form-label"># Pisos</label>
+                            <div class="col-lg-3">
+                              <input id="txtCanPisos" name="txtCanPisos" type="text" class="form-control text-end"
+                                oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="3"
+                                inputmode="numeric">
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="row">
+
+                        <div class="col-lg-4">
+                          <div class="input-group mb-3">
+                            <label for="txtMtsConst" class="col-lg-6 col-form-label me-2">Construcción</label>
+                            <div class="col-lg-3">
+                              <input id="txtMtsConst" name="txtMtsConst" type="text" class="form-control text-end me-2"
+                                oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="6"
+                                inputmode="numeric">
+                            </div>
+                            <label class="col-1 ms-2 col-form-label">m2</label>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                          <div class="input-group mb-3">
+                            <label for="txtMtsLote" class="col-lg-3 col-form-label me-2">Lote</label>
+                            <div class="col-lg-3">
+                              <input id="txtMtsLote" name="txtMtsLote" type="text" class="form-control text-end"
+                                oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="6"
+                                inputmode="numeric">
+                            </div>
+                            <label class="col-1 ms-2 col-form-label">m2</label>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="row">
+
+                        <div class="col-lg-4">
+                          <div class="input-group mb-3">
+                            <label for="txtMtsFrente" class="col-lg-6 col-form-label me-2">Frente</label>
+                            <div class="col-lg-3">
+                              <input id="txtMtsFrente" name="txtMtsFrente" type="text"
+                                class="form-control text-end me-2"
+                                oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="6"
+                                inputmode="numeric">
+                            </div>
+                            <label class="col-1 ms-2 col-form-label">mts</label>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                          <div class="input-group mb-3">
+                            <label for="txtMtsFondo" class="col-lg-3 col-form-label me-2">Fondo</label>
+                            <div class="col-lg-3">
+                              <input id="txtMtsFondo" name="txtMtsFondo" type="text" class="form-control text-end"
+                                oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="6"
+                                inputmode="numeric">
+                            </div>
+                            <label class="col-1 ms-2 col-form-label">mts</label>
+                          </div>
+                        </div>
+
+                      </div>
+
+
+                      <div class="row">
+
+                        <div class="col-lg-4">
+                          <div class="input-group mb-3">
+                            <label for="txtAnioConst" class="col-lg-6 col-form-label me-2">Año Construcción</label>
+                            <div class="col-lg-3">
+                              <input id="txtAnioConst" name="txtAnioConst" type="text" class="form-control"
+                                oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="4"
+                                inputmode="numeric">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                          <div class="input-group mb-3">
+                            <label for="txtAnioRemo" class="col-lg-4 col-form-label me-2">Año remodelación</label>
+                            <div class="col-lg-2">
+                              <input id="txtAnioRemo" name="txtAnioRemo" type="text" class="form-control"
+                                oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="4"
+                                inputmode="numeric">
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="input-group mb-3">
+                        <label for="txtDetProp" class="col-lg-2 col-form-label">Descripción</label>
+                        <div class="col-lg-9">
+                          <textarea class="form-control" name="txtDetProp" id="txtDetProp" rows="4"></textarea>
+                        </div>
+                      </div>
+
+                    </form>
+
+
+                  </div>
+
+
+                  <div class="tab-pane fade" id="finLegal" role="tabpanel" aria-labelledby="finLegal-tab">
+
+                    <form id="datosFinLegal_form" autocomplete="off">
+
+                      <div class="input-group mb-3 mt-3">
+                        <label class="col-lg-2 col-form-label me-1">Tipo Moneda</label>
+                        <div class="col-lg-3">
+                          <select id="cbTipoMoneda" class="form-select" aria-label="Default select example">
+                            <option value="USD">US Dolar</option>
+                            <option value="CRC">CR Colones</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="row">
+
+                        <div class="col-lg-5">
+                          <div class="input-group mb-3">
+                            <label for="txtPreAlq" class="col-lg-5 col-form-label">Precio Alquiler</label>
+                            <div class="col-lg-4">
+                              <input id="txtPreAlq" name="txtPreAlq" type="text" class="form-control text-end"
+                                oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="10"
+                                inputmode="numeric">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                          <div class="input-group mb-3">
+                            <label for="txtPreVta" class="col-lg-3 col-form-label me-2">Precio Venta</label>
+                            <div class="col-lg-4">
+                              <input id="txtPreVta" name="txtPreVta" type="text" class="form-control text-end"
+                                oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="10"
+                                inputmode="numeric">
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="row">
+
+                        <div class="col-lg-5">
+                          <div class="input-group mb-3">
+                            <label for="txtComAlq" class="col-lg-5 col-form-label">Comisión Alquiler</label>
+                            <div class="col-lg-3">
+                              <input id="txtComAlq" name="txtComAlq" type="text" class="form-control text-end"
+                                oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="6"
+                                inputmode="numeric">
+                            </div>
+                            <label class="col-1 ms-2 col-form-label">%</label>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                          <div class="input-group mb-3">
+                            <label for="txtComVta" class="col-lg-3 col-form-label me-2">Comisión Venta</label>
+                            <div class="col-lg-3">
+                              <input id="txtComVta" name="txtComVta" type="text" class="form-control text-end"
+                                oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="6"
+                                inputmode="numeric">
+                            </div>
+                            <label class="col-1 ms-2 col-form-label">%</label>
+                          </div>
+                        </div>
+
+                      </div>
+
+
+                      <div class="input-group mb-3">
+                        <label for="txtObsFin" class="col-lg-2 col-form-label me-1">Observaciones</label>
+                        <div class="col-lg-9">
+                          <textarea class="form-control" name="txtObsFin" id="txtObsFin" rows="4"
+                            maxlength="600"></textarea>
+                        </div>
+                      </div>
+
+
+
+                    </form>
+
+
+                  </div>
+
+
+                  <div class="tab-pane fade" id="contacto" role="tabpanel" aria-labelledby="contacto-tab">
+
+                    <form id="datosContacto_form" autocomplete="off">
+
+
+
+                      <div class="row mb-3 mt-3 ">
+                        <label for="txtNomContacto" class="col-lg-2 col-form-label">Nombre</label>
+                        <div class="col-lg-6">
+                          <input id="txtNomContacto" name="txtNomContacto" type="text" class="form-control"
+                            maxlength="80">
+                        </div>
+
+                        <div class="col-lg-1 col-2">
+                          <button id="btnBusContacto" class="btn btn-light" data-bs-toggle="modal"
+                            data-bs-target="#modBusContacto"><i class="bi bi-search" data-bs-toggle="tooltip"
+                              title="Busca Contacto"></i></button>
+                        </div>
+
+                      </div>
+
+
+                      <div class="input-group mb-lg-3">
+                        <label for="txtTel1" class="col-lg-2 col-form-label">Teléfonos</label>
+
+                        <div class="col-lg-2 me-3">
+                          <input id="txtTel1" name="txtTel1" type="text" class="form-control"
+                            oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="8" inputmode="numeric">
+                        </div>
+
+                        <div class="col-lg-2">
+
+                          <input id="txtTel2" name="txtTel2" type="text" class="form-control"
+                            oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="8" inputmode="numeric">
+
+                        </div>
+                      </div>
+
+
+                      <div class="row mb-lg-3">
+                        <label for="txtEmail" class="col-lg-2 col-md-3 col-form-label">Email</label>
+                        <div class="col-lg-6 col-md-9">
+                          <input id="txtEmail" name="txtEmail" type="email" class="form-control" maxlength="80">
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label class="col-lg-2 col-form-label">Relación</label>
+                        <div class="col-lg-4">
+                          <select id="cbRelContacto" class="form-select" aria-label="Default select example">
+                            <option value="0">Seleccione una opción</option>
+                            <option value="1">Dueño</option>
+                            <option value="2">Intermediario</option>
+                            <option value="3">Corredor</option>
+
+                          </select>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+            <!--div class="input-group mb-3">
+              <label class="col-lg-3 col-form-label"></label>
+              <div class="col-lg-6">
+
+                <button id="btnActualizar" class="btn btn-success me-3">Actualizar</i></button>
+                <button id="btnCancelar" class="btn btn-dark">Cancelar</i></button>
+
+              </div>
+
+            </div-->
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+  </main><!-- End #main -->
+
+
+  <!-- Modal Buscar Cliente-->
+  <div class="modal fade" id="modBusContacto" tabindex="-1" aria-labelledby="modBusContactoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modBusContactoLabel">Buscar Contactos</h5>
+          <button id="btnCerrarModBusCon" type="button" class="btn-close" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card">
+            <div class="card-body">
+
+              <div class="table-responsive">
+                <table id="tblContactos" class="table table-light" style="width: 100%;">
+                  <thead>
+                    <tr>
+                      <th class="col-6">Nombre</th>
+                      <th class="col-2">Teléfono</th>
+                      <!--th class="col-2">Email</th-->
+                      <th class="col-1 text-end"></th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Seccab Software</span></strong>. Derechos Reservados
+    </div>
+
+  </footer><!-- End Footer -->
+
+
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/datatables/datatables.min.js"></script>
+
+  <!-- Archivo JS pagina -->
+
+  <script src="./js/actualiza-propiedades.js"></script>
+
+</body>
+
+</html>

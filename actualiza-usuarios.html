@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CATALOGO PROPIEDADES</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="./img/logo.ico" rel="icon">
+  <!--link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"-->
+
+  <!-- Google Fonts -->
+  <!--link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet"-->
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+
+  <!-- DataTables CSS files-->
+  <link rel="stylesheet" type="text/css" href="../assets/datatables/datatables.min.css" />
+
+  <!-- Template Main CSS File -->
+  <link href="./css/style.css" rel="stylesheet">
+
+  <!-- Sweet Alert Files-->
+  <!--link type="text/css" href="../assets/css/sweetalert.css" rel="stylesheet" /-->
+  <script src="../assets/js/sweetalert2.all.min.js"></script>
+
+
+  <!-- jQuery js-->
+  <script src="../assets/js/jquery-3.6.3.min.js"></script>
+
+  <!-- App Lotto JS -->
+  <script src="./js/mccMain.js"></script>
+
+
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <script>
+
+      checkInicioSesion();
+
+      addHeader();
+
+    </script>
+
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+
+      <script>
+        addMenu();
+
+
+
+      </script>
+
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main" style="min-height:600px">
+
+    <div class="row ">
+      <div class="pagetitle col-lg-4 mb-lg-3">
+        <h1>Actualiza Usuarios</h1>
+        <!--span>Módulo Vendedor</span-->
+
+      </div><!-- End Page Title -->
+
+      <!-- Barra botones -->
+      <div class="col-lg-8 d-flex mb-lg-3 justify-content-end">
+
+        <!--button id="btnEnviar" class="btn btn-primary me-3">Enviar</button-->
+
+        <!--button id="btnCompartir" type="button" class="btn btn-light" data-bs-toggle="tooltip" title="Compartir"><i
+            class="bi bi-share"></i></button-->
+
+        <!--button id="btnVistaPrevia" class="btn btn-light" data-bs-toggle="tooltip" title="Vista Previa"><i
+            class="bi bi-search"></i></button-->
+
+      </div>
+
+    </div>
+
+
+
+    <section class="section">
+
+      <div id="spinner" class="text-center" style="display: none">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <!-- Div del formulario-->
+        <div class="col-lg-6">
+
+          <div class="card">
+            <div class="card-body">
+
+              <form id="actUsu-form" autocomplete="off">
+
+       
+                <div class="row mb-3 mt-3">
+                  <label for="txtIdUsu" class="col-lg-3 col-form-label">ID</label>
+                  <div class="col-lg-4 col-7">
+                    <input id="txtIdUsu" name="txtIdUsu" type="text" class="form-control" maxlength="15" autofocus>
+                  </div>
+
+                  <!--div class="col-2">
+                    <button id="btnBuscaUsu" class="btn btn-light" data-bs-toggle="modal"
+                      data-bs-target="#modBuscaUsu"><i class="bi bi-search" data-bs-toggle="tooltip"
+                        title="Buscar"></i></button>
+                  </div-->                 
+                </div>
+
+                <div class="row mb-3">
+                  <label for="txtNomUsu" class="col-lg-3 col-form-label">Nombre</label>
+                  <div class="col-lg-9">
+                    <input id="txtNomUsu" name="txtNomUsu" type="text" class="form-control" maxlength="40">
+                  </div>
+                </div>
+
+
+
+                <div class="row mb-3">
+                  <label class="col-lg-3 col-6 col-form-label">Tipo Usuario</label>
+                  <div class="col-lg-4 col-6">
+                    <select id="cbTipoUsu" class="form-select" aria-label="Default select example">
+                      <option selected value="1">Ejecutivo</option>
+                      <option value="2">Ejecutivo Adm</option>
+                      
+                    </select>
+                  </div>
+                </div>
+
+
+                <div class="row mb-3">
+                  <label class="col-lg-3 col-6 col-form-label">Estado</label>
+                  <div class="col-lg-3 col-6">
+                    <select id="cbEstadoUsu" class="form-select" aria-label="Default select example">
+                      <option value="0">Inactivo</option>
+                      <option selected value="1">Activo</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-lg-3 col-form-label"></label>
+                  <div class="col-lg-9">
+
+                    <button id="btnActualizar" class="btn btn-success me-3">Actualizar</button>
+                    <button id="btnCancelar" class="btn btn-dark">Cancelar</button>
+
+                  </div>
+                </div>
+
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Div del data teble-->
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body mt-3">
+              <h5>Usuarios registrados</h5>            
+
+              <div class="table-responsive">
+                <table id="tblUsuarios" class="table table-primary">
+                  <thead>
+                    <tr>
+                      <th class="col-2">ID</th>
+                      <th class="col-4 text-center">Nombre</th>                     
+                      <th class="col-2 text-center">Estado</th>
+                      <th class="col-1"></th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+    </section>
+
+  </main><!-- End #main -->
+
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Seccab Software</span></strong>. Derechos Reservados
+    </div>
+
+  </footer><!-- End Footer -->
+
+
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/datatables/datatables.min.js"></script>
+
+  <!-- Archivo JS pagina -->
+
+  <script src="./js/actualiza-usuarios.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>CATALOGO PROPIEDADES</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="./img/logo.ico" rel="icon">
+  <!--link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"-->
+
+  <!-- Google Fonts -->
+  <!--link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet"-->
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+
+  <!-- DataTables CSS files-->
+  <link rel="stylesheet" type="text/css" href="../assets/datatables/datatables.min.css" />
+
+
+  <!-- Template Main CSS File -->
+  <link href="./css/style.css" rel="stylesheet">
+
+  <!-- Sweet Alert Files-->
+  <!--link type="text/css" href="../assets/css/sweetalert.css" rel="stylesheet" /-->
+  <script src="../assets/js/sweetalert2.all.min.js"></script>
+
+
+  <!-- jQuery js-->
+  <script src="../assets/js/jquery-3.6.3.min.js"></script>
+
+  <!-- App Lotto JS -->
+  <script src="./js/mccMain.js"></script>
+
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <script>
+
+      checkInicioSesion();
+
+      addHeader();
+
+    </script>
+
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <script>
+        addMenu();
+
+      </script>
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+
+
+    <div class="row ">
+      <div class="pagetitle col-lg-4 mb-lg-3">
+        <h1>Propiedades</h1>
+        <!--span>Módulo Vendedor</span-->
+
+      </div><!-- End Page Title -->
+
+      <!-- Barra botones -->
+      <div class="col-lg-8 d-flex mb-lg-3 justify-content-end">
+
+        <div class="input-group">
+          <!--label class="col-lg-2 col-form-label"></label-->
+          <div class="col-lg-4">
+            <select id="cbFiltrado" class="form-select" aria-label="Default select example">
+              <option value="0">Publicaciones Inactivas</option>
+              <option value="1">Publicaciones Activas</option>
+              <option value="2">Propiedades Vendidas</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="btnNuevo" type="button" class="btn btn-success me-3" data-bs-toggle="tooltip"
+          title="Nueva Propiedad"><i class="bi bi-plus"></i></button>
+
+        <button id="btnBuscar" type="button" class="btn btn-primary" data-bs-toggle="tooltip"
+          title="Busqueda Avanzada"><i class="bi bi-search"></i></button>
+
+
+      </div>
+
+    </div>
+
+
+
+    <section class="section">
+
+      <div id="spinner" class="text-center" style="display: none">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <!-- Div del data teble-->
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body mt-3">
+
+              <div class="table-responsive">
+                <table id="tblPropiedades" class="table table-primary" style="width: 100%;">
+                  <thead>
+                    <tr>
+                      <th class="col-2 "></th>
+                      <th class="col-1 text-center"></th>
+                      <th class="col-5">Descripcion</th>
+                      <th class="col-2">Precio</th>
+                      <th class="col-1 text-center">Fecha Publicación</th>
+                      <th class="col-1 ">Ejecutivo</th>
+
+                    </tr>
+                  </thead>
+
+                  <tbody>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+    </section>
+
+  </main><!-- End #main -->
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Seccab Software</span></strong>. Derechos Reservados
+    </div>
+
+  </footer><!-- End Footer -->
+
+
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/datatables/datatables.min.js"></script>
+
+  <script src="./js/inicio.js"></script>
+
+
+</body>
+
+</html>
