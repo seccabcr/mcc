@@ -588,8 +588,17 @@ $(function () {
 
                 $txtNumProp.val(data.resp.num_prop);
 
-                Swal.fire({ title: msg, icon: "info" });
+                //Swal.fire({ title: msg, icon: "info" });
 
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: msg,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+                //iGoTo('./inicio.html');
                 //limpiaCampos();
                 //inactivaCampos();
                 //$txtIdUsu.val('').focus();

@@ -25,6 +25,7 @@ $(function () {
         req.w = 'apiMcc';
         req.r = 'consulta_datos_preview';
         req.num_prop = num_prop;
+        req.id_usuario = sessionStorage.getItem('ID_USUARIO');
 
         await fetch_postRequest(req,
             function (data) {
@@ -39,6 +40,7 @@ $(function () {
 
                 _datos = element.datos;
                 _fotos = element.fotos;
+                _datosUsu = element.datos_usu;
 
                 let texto = aTiposPub[_datos.cat_publicacion - 1] + ' ' + _datos.nom_tipo_prop;
                 $('#encabezado h1').text(texto);
@@ -93,13 +95,15 @@ $(function () {
                 texto = '<p><strong>Descripcion: </strong>' + _datos.det_prop + '</p>';
                 $('#det-prop').append(texto);
 
-                texto = '<p><strong>' + _datos.nom_usuario + '</strong>';
+                
+                
+                texto = '<p><strong>' + _datosUsu.nom_usuario + '</strong>';
 
-                if (_datos.telefonos.length > 0) {
-                    texto += '<br>' + _datos.telefonos;
+                if (_datosUsu.telefonos.length > 0) {
+                    texto += '<br>' + _datosUsu.telefonos;
                 }
-                if (_datos.email_usu.length > 0) {
-                    texto += '<br>' + _datos.email_usu;
+                if (_datosUsu.email_usu.length > 0) {
+                    texto += '<br>' + _datosUsu.email_usu;
                 }
                 texto += '</p>';
 

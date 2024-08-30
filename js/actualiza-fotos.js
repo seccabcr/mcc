@@ -12,15 +12,23 @@ $(function () {
 
     const $txtNumProp = $('#txtNumProp');
 
-    const $inputImg = $('#input-img').change(function (files) {
+    const $inputImg = $('#input-img').change(function (event) {           
+      
 
-        //fileUploader=null;
+        const fileUploader = event.target.files[0];
 
-        const fileUploader = files.target.files[0];
+        //console.log(fileUploader)
 
-        let img_url = URL.createObjectURL(fileUploader);
+        if(fileUploader){
 
-        $imgPreview.attr("src", img_url)
+            $btnGuardar.prop('disabled', false);
+
+            let img_url = URL.createObjectURL(fileUploader);
+
+            $imgPreview.attr("src", img_url)
+        }
+
+       
 
 
     });
@@ -30,6 +38,8 @@ $(function () {
     const $btnAgregaImg = $('#btnAgregaImg').click((e) => {
 
         conse_foto = 0;
+        $btnGuardar.prop('disabled', true);
+        $imgPreview.attr("src", "./img/no-foto.jpg");
 
         $inputImg.click();
 
@@ -59,6 +69,7 @@ $(function () {
             {
                 data: 'conse',
                 searchable: false,
+                visible: false,
                 className: 'dt-center'
 
             },
@@ -93,6 +104,10 @@ $(function () {
 
         conse_foto = Number.parseInt(data.conse);
 
+        $imgPreview.attr("src", "./img/no-foto.jpg");
+        $btnGuardar.prop('disabled',true);
+
+
         $inputImg.click();
 
 
@@ -103,7 +118,7 @@ $(function () {
         let data = $tblImagenes.row($(this).parents('tr')).data();
 
         conse_foto = Number.parseInt(data.conse);
-        
+
         if (conse_foto <= 6) {
 
             Swal.fire({ title: "No es permitido eliminar las primeras 6 fotos registradas\nUse la opcion de cambiar la imagen", icon: "warning" });
@@ -112,16 +127,38 @@ $(function () {
         }
 
 
+        Swal
+        .fire({
+           title: "Desea Eliminar la foto?",              
+           icon: 'warning',
+           showCancelButton: true,
+           confirmButtonText: "Sí, eliminar",
+           cancelButtonText: "Cancelar",
+        })
+        .then(resultado => {
+           if (resultado.value) {
+              // elimina la foto
+              
+
+              eliminaImagen();
+
+           } 
+        });
+
+
+
+
     });
 
 
     function cargaNumeroPropiedad() {
 
-        //limpiaCampos();
+        $btnGuardar.prop('disabled', true);
 
         let _numProp = readCookie('numero_propiedad');
 
         if (_numProp != null) {
+
             $txtNumProp.val(_numProp);
 
             llenaTablaFotos();
@@ -129,8 +166,49 @@ $(function () {
         }
     }
 
+    async function eliminaImagen() {
+
+        $('#spinner').show();
+
+        let req = new Object();
+        req.w = 'apiMcc';
+        req.r = 'elimina_fotos';
+        req.num_prop = Number.parseInt($txtNumProp.val());
+        req.conse_foto = conse_foto;
+        
+
+        await fetch_postRequest(req,
+            function (data) {
+
+                $('#spinner').hide();
+
+                //console.log(data)
+
+                let response = data.resp;
+                if (response.status=='error'){
+                    Swal.fire({ title: response.msg, icon: "error" });
+                    return;
+                }
+                
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: response.msg,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+                llenaTablaFotos();
+
+
+            });
+    }
+
+
 
     async function guardarImagen() {
+
+        $btnGuardar.prop('disabled', true);
 
         const api_url = "./data/wsEnviaFoto.php";
 
@@ -148,7 +226,27 @@ $(function () {
             .then(decodificado => {
 
                 console.log(decodificado)
+
+                let _status = decodificado.status;
+                let _msg = decodificado.msg;
+
+                if (_status == 'error') {
+
+                    Swal.fire({ title: _msg, icon: "error" });
+                    return;
+                }
+
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: _msg,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
                 llenaTablaFotos();
+
+
             });
 
     }

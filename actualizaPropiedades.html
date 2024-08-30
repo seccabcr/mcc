@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MCC Asesores Inmobiliarios</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="./img/sifcco.ico" rel="icon">
+
+  <!--link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"-->
+
+  <!-- Google Fonts -->
+  <!--link href="https://fonts.gstatic.com" rel="preconnect"-->
+  <!--link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet"-->
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+
+  <!-- DataTables CSS files-->
+  <link rel="stylesheet" type="text/css" href="../assets/datatables/datatables.min.css" />
+
+  <!-- Template Main CSS File -->
+  <link href="./css/style.css" rel="stylesheet">
+
+  <!-- Sweet Alert Files-->
+  <!--link type="text/css" href="../assets/css/sweetalert.css" rel="stylesheet" /-->
+  <script src="../assets/js/sweetalert2.all.min.js"></script>
+
+
+  <!-- jQuery js-->
+  <script src="../assets/js/jquery-3.6.3.min.js"></script>
+
+  <!-- App Lotto JS -->
+  <script src="./js/mccMain.js"></script>
+
+
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <script>
+
+      checkInicioSesion();
+
+      addHeader();
+
+    </script>
+
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <script>
+        addMenuMan();
+
+      </script>
+
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main" style="min-height:600px">
+
+    <div class="row ">
+      <div class="pagetitle col-lg-4 mb-lg-3">
+        <h1>Actualiza Propiedades</h1>
+        <!--span>Módulo Mantenimiento</span-->
+
+      </div><!-- End Page Title -->
+
+      <!-- Barra botones -->
+      <div class="col-lg-8 d-flex mb-lg-3 justify-content-lg-center justify-content-end">
+
+
+
+        <!--button id="btnActualizar" type="button" class="btn btn-primary" data-bs-toggle="tooltip"
+          title="Actualizar">Actualizar</button-->
+
+        <!--button id="btnVistaPrevia" class="btn btn-light" data-bs-toggle="tooltip" title="Vista Previa"><i
+            class="bi bi-search"></i></button-->
+
+      </div>
+
+    </div>
+
+
+
+    <section class="section">
+
+      <div id="spinner" class="text-center" style="display: none">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+      </div>
+
+      <div class="row d-flex justify-content-center">
+        <!-- Div del formulario-->
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+
+              <div class="input-group mb-3 mt-3">
+                <label for="txtCodPro" class="col-lg-2 col-5 col-form-label">Codigo Propiedad</label>
+                <div class="col-lg-1 col-3 me-2">
+                  <input id="txtCodPro" name="txtCodPro" type="text" class="form-control"
+                    oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="8" inputmode="numeric" autofocus
+                    autocomplete="off">
+                </div>
+                <!--div class="col-lg-1 col-2">
+                  <button id="btnBuscaCli" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modBuscaCli"><i
+                      class="bi bi-search" data-bs-toggle="tooltip" title="Buscar"></i></button>
+
+                </div-->
+
+                <div class="col-lg-1 col-2">
+                  <button id="btnNuevo" class="btn btn-dark">Nuevo Registro</button>
+                </div>
+
+
+              </div>
+
+              <!--div class="input-group mb-3">
+                <label for="txtNomComercial" class="col-lg-2 col-form-label">Nombre
+                  Comercial</label>
+                <div class="col-lg-6 col-12">
+                  <input id="txtNomComercial" name="txtNomComercial" type="text" class="form-control">
+                </div>
+              </div-->
+
+
+              <div id="tabs">
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="generales-tab" data-bs-toggle="tab" data-bs-target="#generales"
+                      type="button" role="tab" aria-controls="generales" aria-selected="true">Generales</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="ubicacion-tab" data-bs-toggle="tab" data-bs-target="#ubicacion"
+                      type="button" role="tab" aria-controls="ubicacion" aria-selected="false">Ubicación</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="factura-tab" data-bs-toggle="tab" data-bs-target="#factura"
+                      type="button" role="tab" aria-controls="factura" aria-selected="false">Detalles</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="finLeg-tab" data-bs-toggle="tab" data-bs-target="#finLeg"
+                      type="button" role="tab" aria-controls="finLeg" aria-selected="false">Financiero/Legal</button>
+                  </li>
+                </ul>
+
+
+                <div class="tab-content" id="myTabContent">
+
+                  <div class="tab-pane fade show active" id="generales" role="tabpanel" aria-labelledby="generales-tab">
+
+                    <form method="post" autocomplete="off">
+
+
+                      <div class="row mb-3 mt-3 ">
+                        <label for="txtNomTributa" class="col-lg-2 col-form-label">Nombre
+                          Tributario</label>
+                        <div class="col-lg-6">
+                          <input id="txtNomTributa" name="txtNomTributa" type="text" class="form-control">
+                        </div>
+
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-4">
+                          <div class="row mb-3">
+                            <label for="txtIdTributa" class="col-6 col-form-label">ID Tributario</label>
+                            <div class="col-6">
+                              <input id="txtIdTributa" name="txtIdTributa" type="text" class="form-control"
+                                oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="15"
+                                inputmode="numeric">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                          <div class="row mb-3">
+                            <label class="col-lg-2 col-6 col-form-label">Tipo</label>
+                            <div class="col-lg-4 col-6">
+                              <select id="cbTipoId" class="form-select" aria-label="Default select example">
+                                <option value="1-Fisica">Física</option>
+                                <option value="2-Juridica">Jurídica</option>
+                                <option value="3-DIMEX">DIMEX</option>
+                                <option value="4-NITE">NITE</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row mb-lg-3">
+                        <label for="txtEmail" class="col-lg-2 col-md-3 col-form-label">Email</label>
+                        <div class="col-lg-6 col-md-9">
+                          <input id="txtEmail" name="txtEmail" type="email" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="row">
+
+                        <div class="col-lg-8">
+                          <div class="row mb-3">
+                            <label for="txtNomContacto" class="col-lg-3 col-md-3 col-form-label">Nombre Contacto</label>
+                            <div class="col-lg-8 col-md-9">
+                              <input id="txtNomContacto" name="txtNomContacto" type="text" class="form-control"
+                                maxlength="80">
+                            </div>
+
+                          </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                          <div class="row mb-3">
+                            <label for="txtTelContacto" class="col-lg-3 col-6 col-form-label">Telefono</label>
+                            <div class="col-lg-5 col-6">
+                              <input id="txtTelContacto" name="txtTelContacto" type="text" class="form-control"
+                                oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="8"
+                                inputmode="numeric">
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+
+                      <div class="row">
+
+                        <div class="col-lg-6">
+                          <div class="row mb-3">
+                            <label for="txtFecApe" class="col-lg-4 col-6 col-form-label">Fecha Apertura</label>
+                            <div class="col-lg-4 col-6">
+                              <input id="txtFecApe" name="txtFecApe" type="date" class="form-control">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="row mb-3">
+                            <label class="col-lg-2 col-6 col-form-label">Estado</label>
+                            <div class="col-lg-4 col-6">
+                              <select id="cbEstado" class="form-select" aria-label="Default select example">
+                                <option value="0">Inactivo</option>
+                                <option value="1">Activo</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </form>
+                  </div>
+
+                  <div class="tab-pane fade" id="ubicacion" role="tabpanel" aria-labelledby="ubicacion-tab">
+
+                    <form id="datosUbicacion_form" autocomplete="off">
+
+                      <div class="row">
+
+                        <div class="col-lg-8">
+
+                          <div class="row mb-lg-3 mt-3">
+                            <label class="col-lg-2 col-form-label">Agencia</label>
+                            <div class="col-lg-6">
+                              <select id="cbAgencias" class="form-select" aria-label="Default select example">
+                                <option selected value="0">Seleccione una agencia</option>
+
+                              </select>
+                            </div>
+                            <div id="spinnerAge" class="col-1" style="display: none">
+                              <div class="spinner-border text-primary" style="width: 1.5rem; height: 1.5rem;" role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                              </div>
+                            </div>
+                            
+                          </div>
+
+                          <div class="row mb-lg-3">
+                            <label class="col-lg-2 col-form-label">Ruta / PDV</label>
+                            <div class="col-lg-6">
+                              <select id="cbPdvs" class="form-select" aria-label="Default select example">
+                                <option selected value="0">Seleccione una ruta o PDV</option>
+
+                              </select>
+                            </div>
+                            <div id="spinnerPdv" class="col-1" style="display: none">
+                              <div class="spinner-border text-primary" style="width: 1.5rem; height: 1.5rem;" role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row mb-lg-3">
+                            <label class="col-lg-2 col-form-label">Provincia</label>
+                            <div class="col-lg-6">
+                              <select id="cbProvincias" class="form-select" aria-label="Default select example">
+                                <option selected value="0">Seleccione una Provincia</option>
+
+                              </select>
+                            </div>
+                            <div id="spinnerProv" class="col-1" style="display: none">
+                              <div class="spinner-border text-primary" style="width: 1.5rem; height: 1.5rem;" role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row mb-lg-3">
+                            <label class="col-lg-2 col-form-label">Cantón</label>
+                            <div class="col-lg-6">
+                              <select id="cbCantones" class="form-select" aria-label="Default select example">
+                                <option selected value="0">Seleccione un Cantón</option>
+
+                              </select>
+                            </div>
+                            <div id="spinnerCant" class="col-1" style="display: none">
+                              <div class="spinner-border text-primary" style="width: 1.5rem; height: 1.5rem;" role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row mb-lg-3">
+                            <label class="col-lg-2 col-form-label">Distrito</label>
+                            <div class="col-lg-6">
+                              <select id="cbDistritos" class="form-select" aria-label="Default select example">
+                                <option selected value="0">Seleccione un Distrito</option>
+
+                              </select>
+                            </div>
+                            <div id="spinnerDist" class="col-1" style="display: none">
+                              <div class="spinner-border text-primary" style="width: 1.5rem; height: 1.5rem;" role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row mb-3">
+                            <label for="txtSennas" class="col-lg-2 col-form-label">Otras Señas</label>
+                            <div class="col-lg-9">
+                              <textarea class="form-control" name="txtSennas" id="txtSennas" rows="3"
+                                maxlength="200"></textarea>
+                            </div>
+
+                          </div>
+
+                        </div>
+
+                        <div class="col-lg-4">
+
+                          <div class="mt-3 mb-3">Días visita</div>
+
+                          <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" value="" id="visLun">
+                            <label class="form-check-label" for="visLun">
+                              Lunes
+                            </label>
+                          </div>
+
+                          <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" value="" id="visMar">
+                            <label class="form-check-label" for="visMar">
+                              Martes
+                            </label>
+                          </div>
+                          <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" value="" id="visMie">
+                            <label class="form-check-label" for="visMie">
+                              Miércoles
+                            </label>
+                          </div>
+
+                          <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" value="" id="visJue">
+                            <label class="form-check-label" for="visJue">
+                              Jueves
+                            </label>
+                          </div>
+                          <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" value="" id="visVie">
+                            <label class="form-check-label" for="visVie">
+                              Viernes
+                            </label>
+                          </div>
+                          <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" value="" id="visSab">
+                            <label class="form-check-label" for="visSab">
+                              Sábado
+                            </label>
+                          </div>
+                          <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" value="" id="visDom">
+                            <label class="form-check-label" for="visDom">
+                              Domingo
+                            </label>
+                          </div>
+
+                        </div>
+
+
+
+                      </div>
+
+                    </form>
+
+                  </div>
+
+                  <div class="tab-pane fade" id="detPropiedad" role="tabpanel" aria-labelledby="detPropiedad-tab">
+
+                    <form id="datosfacturacion_form" autocomplete="off">
+
+
+                      <div class="input-group mb-lg-3 mt-3">
+                        <label class="col-lg-2 col-form-label">Categoria Cliente</label>
+                        <div class="col-lg-4">
+                          <select id="cbCatPdv" class="form-select" aria-label="Default select example">
+                            <option selected value="0">Seleccione una categoría</option>
+
+                          </select>
+                        </div>
+                      </div>
+                      <div class="input-group mb-lg-3">
+                        <label for="txtPorDscto" class="col-lg-2 col-form-label">Descuento Máximo</label>
+                        <div class="col-lg-1">
+                          <input id="txtPorDscto" name="txtPorDescto" type="text" class="form-control text-end"
+                            oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="3" inputmode="numeric">
+                        </div>
+                        <label class="col-1 ms-2 col-form-label">%</label>
+                      </div>
+
+                      <div class="input-group mb-lg-3">
+                        <label for="txtLimCre" class="col-lg-2 col-form-label">Limite Crédito</label>
+                        <div class="col-lg-2">
+                          <input id="txtLimCre" name="txtLimCre" type="text" class="form-control text-end"
+                            oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="12" inputmode="numeric">
+                        </div>
+                      </div>
+
+                      <div class="input-group mb-lg-3">
+                        <label for="txtPlazo" class="col-lg-2 col-form-label">Plazo</label>
+                        <div class="col-1">
+                          <input id="txtPlazo" name="txtPlazo" type="text" class="form-control text-center"
+                            oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="2" inputmode="numeric">
+                        </div>
+                        <label class="col-1 ms-2 col-form-label">días</label>
+                      </div>
+
+                    </form>
+
+
+                  </div>
+
+                  
+                  <div class="tab-pane fade" id="finLegal" role="tabpanel" aria-labelledby="finLegal-tab">
+
+                    <form id="datosFinLegal_form" autocomplete="off">
+
+
+                      <div class="input-group mb-lg-3 mt-3">
+                        <label class="col-lg-2 col-form-label">Categoria Cliente</label>
+                        <div class="col-lg-4">
+                          <select id="cbCatPdv" class="form-select" aria-label="Default select example">
+                            <option selected value="0">Seleccione una categoría</option>
+
+                          </select>
+                        </div>
+                      </div>
+                      <div class="input-group mb-lg-3">
+                        <label for="txtPorDscto" class="col-lg-2 col-form-label">Descuento Máximo</label>
+                        <div class="col-lg-1">
+                          <input id="txtPorDscto" name="txtPorDescto" type="text" class="form-control text-end"
+                            oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="3" inputmode="numeric">
+                        </div>
+                        <label class="col-1 ms-2 col-form-label">%</label>
+                      </div>
+
+                      <div class="input-group mb-lg-3">
+                        <label for="txtLimCre" class="col-lg-2 col-form-label">Limite Crédito</label>
+                        <div class="col-lg-2">
+                          <input id="txtLimCre" name="txtLimCre" type="text" class="form-control text-end"
+                            oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="12" inputmode="numeric">
+                        </div>
+                      </div>
+
+                      <div class="input-group mb-lg-3">
+                        <label for="txtPlazo" class="col-lg-2 col-form-label">Plazo</label>
+                        <div class="col-1">
+                          <input id="txtPlazo" name="txtPlazo" type="text" class="form-control text-center"
+                            oninput="this.value = this.value.replace(/[A-Za-z]/,'')" maxlength="2" inputmode="numeric">
+                        </div>
+                        <label class="col-1 ms-2 col-form-label">días</label>
+                      </div>
+
+                    </form>
+
+
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class="input-group mb-3">
+              <label class="col-lg-3 col-form-label"></label>
+              <div class="col-lg-6">
+
+                <button id="btnActualizar" class="btn btn-success me-3">Actualizar</i></button>
+                <button id="btnCancelar" class="btn btn-dark">Cancelar</i></button>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+  </main><!-- End #main -->
+
+
+  <!-- Modal Buscar Cliente-->
+  <div class="modal fade" id="modBuscaCli" tabindex="-1" aria-labelledby="modBuscaCliLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modBuscaCliLabel">Buscar Cliente</h5>
+          <button id="btnCerrarModCli" type="button" class="btn-close" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="card">
+            <div class="card-body">
+
+              <div class="row mb-3">
+                <label class="col-lg-3 col-form-label">Agencia</label>
+                <div class="col-lg-6">
+                  <select id="cbAgenciasMod" class="form-select" aria-label="Default select example">
+
+                  </select>
+                </div>
+                <div id="spinnerModAge" class="col-1" style="display: none">
+                  <div class="spinner-border text-primary" style="width: 1.5rem; height: 1.5rem;" role="status">
+                    <span class="visually-hidden">Cargando...</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-lg-3 col-form-label">PDV/Ruta</label>
+                <div class="col-lg-6">
+                  <select id="cbPdvsMod" class="form-select" aria-label="Default select example">
+
+                  </select>
+                </div>
+                <div id="spinnerModPDV" class="col-1" style="display: none">
+                  <div class="spinner-border text-primary" style="width: 1.5rem; height: 1.5rem;" role="status">
+                    <span class="visually-hidden">Cargando...</span>
+                  </div>
+                </div>
+              </div>
+
+              <div id="spinnerModCli" class="col-1" style="display: none">
+                <div class="spinner-border text-primary" style="width: 1.5rem; height: 1.5rem;" role="status">
+                  <span class="visually-hidden">Cargando...</span>
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table id="tblClientes" class="table table-light" width="100%">
+                  <thead>
+                    <tr>
+                      <th class="col-1">Código</th>
+                      <th class="">Descripcion</th>
+                      <th class="col-1 text-end"></th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                  </tbody>
+                </table>
+              </div>
+
+
+
+
+            </div>
+          </div>
+
+
+        </div>
+        <!--div class="modal-footer">
+          <button id="btnSelCliMod" type="button" class="btn btn-primary">Seleccionar</button>
+        </div-->
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Seccab Software</span></strong>. Derechos Reservados
+    </div>
+
+  </footer><!-- End Footer -->
+
+
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/datatables/datatables.min.js"></script>
+
+  <!-- Archivo JS pagina -->
+
+  <script src="./js/actualizaCliente.js"></script>
+
+</body>
+
+</html>

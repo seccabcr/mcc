@@ -33,9 +33,10 @@ $(function () {
             {
                 data: 'imagen_url',
                 render: function (data) {
-                    return '<img src="' + data + '" width="200px">';
+                    return '<img src="' + data + '" width="200px" height="200px">';
                 },
-                searchable: false
+                searchable: false,
+                className: 'dt-center'
 
             },
             {
@@ -119,6 +120,26 @@ $(function () {
         
         //iGoTo('./actualiza-fotos.html');
     });
+
+    
+    $('#tblPropiedades').on('click', 'img', function () {
+
+        console.log('Pulso click sobre la imagen')
+
+        let fila = $tblPropiedades.row($(this).parents('tr')).index();
+
+        let _numPro = listaPropiedades[fila].num_prop;
+
+        document.cookie = "numero_propiedad=" + _numPro + ";path=/"
+
+        
+        window.open("ficha-tecnica-agente.html");
+        
+        //iGoTo('./actualiza-fotos.html');
+    });
+
+
+
 
 
 
